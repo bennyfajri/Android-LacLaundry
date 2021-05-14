@@ -23,19 +23,11 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
-
         <EditText
             android:id="@+id/etUserName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usernmae"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/etNamaUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nama User"
+            android:hint="Username"
             android:inputType="text" />
 
         <EditText
@@ -46,10 +38,17 @@
             android:inputType="text" />
 
         <EditText
+            android:id="@+id/etNamaUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama User"
+            android:inputType="text" />
+
+        <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Usernmae"
+            android:hint="Password"
             android:inputType="textPassword" />
 
         <Button
