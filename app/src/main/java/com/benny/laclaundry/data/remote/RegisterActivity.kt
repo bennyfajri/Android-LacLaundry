@@ -1,3 +1,5 @@
+package com.benny.laclaundry.data.remote
+
 import android.util.Log
 import android.widget.Toast
 import com.benny.laclaundry.data.remote.SignupRequest

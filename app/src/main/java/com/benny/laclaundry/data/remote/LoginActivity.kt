@@ -1,9 +1,10 @@
 package com.benny.laclaundry.data.remote
 
-import RegisterActivity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -19,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.*
 
+
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var sp: SharedPreferences
@@ -29,7 +31,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
 
-        sp = getSharedPreferences("user_info",Context.MODE_PRIVATE)
+        sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
         get_user()
         if(sp.contains("username")){
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
@@ -42,9 +44,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun get_user() {
-        sp = getSharedPreferences("user_info",Context.MODE_PRIVATE)
-        val usr = sp.getString("username",null)
-        val pwd = sp.getString("password",null)
+        sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+        val usr = sp.getString("username", null)
+        val pwd = sp.getString("password", null)
 
 
     }
@@ -53,6 +55,25 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id){
             R.id.textviewRegister -> {
                 startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            }
+            R.id.textviewLupa -> {
+                val contact = "+6282283399646"
+
+                val url = "https://api.whatsapp.com/send?phone=$contact"
+                try {
+                    val pm: PackageManager = applicationContext.getPackageManager()
+                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
+                    val i = Intent(Intent.ACTION_VIEW)
+                    i.data = Uri.parse(url)
+                    startActivity(i)
+                } catch (e: PackageManager.NameNotFoundException) {
+                    Toast.makeText(
+                        applicationContext,
+                        "Whatsapp app not installed in your phone",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    e.printStackTrace()
+                }
             }
             R.id.btnLogin -> {
                 if (validaion()) {
@@ -71,9 +92,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                         ) {
                             Log.d("Response::::", response.body().toString())
                             if (response.body()!!.status) {
-                                sp = getSharedPreferences("user_info",Context.MODE_PRIVATE)
-                                if(!sp.contains("username")){
-                                    remember_user(etUserName.text.toString(), etPassword.text.toString())
+                                sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
+                                if (!sp.contains("username")) {
+                                    remember_user(
+                                        etUserName.text.toString(),
+                                        etPassword.text.toString()
+                                    )
                                 }
                                 finish()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
