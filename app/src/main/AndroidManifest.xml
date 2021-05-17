@@ -2,15 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.benny.laclaundry">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LacLaundry">
+        android:theme="@style/Theme.LacLaundry"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".home.laporan.ActivityLaporan"></activity>
+        <activity android:name=".home.pelanggan.ListPelanggan" />
+        <activity android:name=".home.produk.ListProduk" />
         <activity android:name=".data.remote.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".data.remote.RegisterActivity"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".data.remote.RegisterActivity" />
     </application>
 
 </manifest>

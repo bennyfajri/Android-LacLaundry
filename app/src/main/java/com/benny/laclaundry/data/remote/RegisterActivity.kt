@@ -51,6 +51,7 @@ class RegisterActivity: AppCompatActivity(), View.OnClickListener {
                             val loginResponse : SignupResponse
                             loginResponse = response.body()!!
                             if(loginResponse.status){
+                                Toast.makeText(applicationContext, "Berhasil Daftar akun",Toast.LENGTH_LONG).show()
                                 finish()
                             }else{
                                 Toast.makeText(applicationContext, response.body()!!.message,

@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
         sp = getSharedPreferences("user_info",Context.MODE_PRIVATE)
 
-
         val binding =  ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

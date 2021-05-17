@@ -32,7 +32,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         supportActionBar?.hide()
 
         sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        get_user()
         if(sp.contains("username")){
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             startActivity(intent)
@@ -41,14 +40,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         btnLogin.setOnClickListener(this)
         textviewRegister.setOnClickListener(this)
-    }
-
-    private fun get_user() {
-        sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val usr = sp.getString("username", null)
-        val pwd = sp.getString("password", null)
-
-
     }
 
     override fun onClick(v: View) {
@@ -83,7 +74,8 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
                     ApiService.loginApiCall().doLogin(
                         SigninRequest(
-                            etUserName.text.toString(), etPassword.text.toString()
+                            etUserName.text.toString(),
+                            etPassword.text.toString()
                         )
                     ).enqueue(object : Callback<SigninResponse> {
                         override fun onResponse(
@@ -96,7 +88,9 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                 if (!sp.contains("username")) {
                                     remember_user(
                                         etUserName.text.toString(),
-                                        etPassword.text.toString()
+                                        etPassword.text.toString(),
+                                        response.body()!!.data.nama_user,
+                                        response.body()!!.data.id
                                     )
                                 }
                                 finish()
@@ -121,12 +115,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun remember_user(username: String, password: String){
+    private fun remember_user(username: String, password: String,namaLaundry: String, idLaundry: Int){
         sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
 
         val editor = sp.edit()
         editor.putString("username", username)
         editor.putString("password", password)
+        editor.putString("namaLaundry", namaLaundry)
+        editor.putInt("id", idLaundry)
         editor.commit()
     }
 

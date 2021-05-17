@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 object ApiService {
     private val TAG = "--ApiService"
 
-    private const val BASE_URL = "http://192.168.42.224/ServerLaundry/"
+    private const val BASE_URL = "http://192.168.42.178/ServerLaundry/"
 
     fun loginApiCall() = Retrofit.Builder()
         .baseUrl(BASE_URL)
