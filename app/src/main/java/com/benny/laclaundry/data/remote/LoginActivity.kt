@@ -89,7 +89,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                     remember_user(
                                         etUserName.text.toString(),
                                         etPassword.text.toString(),
-                                        response.body()!!.data.Nama_User,
+                                        response.body()!!.data.Nama_Laundry,
                                         response.body()!!.data.ID_User
                                     )
                                 }

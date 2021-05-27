@@ -1,11 +1,12 @@
 package com.benny.laclaundry.data.retrofit
 
+import com.benny.laclaundry.URL
 import retrofit2.Retrofit
 
 object ApiService {
     private val TAG = "--ApiService"
 
-    private const val BASE_URL = "http://192.168.42.236/ServerLaundry/"
+    val BASE_URL = URL.server
 
     fun loginApiCall() = Retrofit.Builder()
         .baseUrl(BASE_URL)

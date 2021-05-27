@@ -1,7 +1,9 @@
 package com.benny.laclaundry.home.pelanggan
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,12 +22,15 @@ import org.json.JSONObject
 class ListPelanggan : AppCompatActivity() {
     var arrayList = ArrayList<ModelPelanggan>()
     private lateinit var rvPelanggan: RecyclerView
+    lateinit var sp: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_pelanggan)
 
         AndroidNetworking.setParserFactory(JacksonParserFactory())
+
+        sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
 
         rvPelanggan = findViewById(R.id.rvPelanggan)
         rvPelanggan.setHasFixedSize(true)
@@ -53,7 +58,7 @@ class ListPelanggan : AppCompatActivity() {
         loading.setMessage("Memuat Data...")
         loading.show()
 
-        AndroidNetworking.get(ApiEndPoint.READ)
+        AndroidNetworking.get(ApiEndPoint.READ + "?idUser=" + sp.getInt("id",0).toString())
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object: JSONObjectRequestListener{
