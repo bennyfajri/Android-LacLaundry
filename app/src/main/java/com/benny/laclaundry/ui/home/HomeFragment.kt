@@ -19,7 +19,7 @@ class HomeFragment : Fragment(R.layout.fragment_home){
 
         val preferences = this.activity
             ?.getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val namaLaundry: String? = preferences?.getString("namaLaundry", null)
+        val namaLaundry: String? = preferences?.getString("username", null)
 //        val Item = activity?.intent?.extras!!.getInt("id",0).toString()
         txtNamaLaundry.setText(namaLaundry)
         btnProduk.setOnClickListener { v ->

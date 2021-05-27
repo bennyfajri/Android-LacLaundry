@@ -89,13 +89,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                     remember_user(
                                         etUserName.text.toString(),
                                         etPassword.text.toString(),
-                                        response.body()!!.data.nama_user,
-                                        response.body()!!.data.id
+                                        response.body()!!.data.Nama_User,
+                                        response.body()!!.data.ID_User
                                     )
                                 }
                                 finish()
                                 val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                                intent.putExtra("id", response.body()!!.data.id)
+                                intent.putExtra("id", response.body()!!.data.ID_User)
                                 startActivity(intent)
                             } else {
                                 Toast.makeText(
