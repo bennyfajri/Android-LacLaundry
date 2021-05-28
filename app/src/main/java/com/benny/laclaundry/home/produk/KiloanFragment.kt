@@ -1,7 +1,9 @@
 package com.benny.laclaundry.home.produk
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -60,7 +62,11 @@ class KiloanFragment : Fragment() {
         loading.setMessage("Memuat data...")
         loading.show()
 
-        AndroidNetworking.get(ApiEndPoint.READ_KILOAN)
+        val preferences = this.activity
+            ?.getSharedPreferences("user_info", Context.MODE_PRIVATE)
+        val id: Int = preferences!!.getInt("id",0)
+
+        AndroidNetworking.get(ApiEndPoint.READ_KILOAN+"?idUser=" + id)
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object  : JSONObjectRequestListener{

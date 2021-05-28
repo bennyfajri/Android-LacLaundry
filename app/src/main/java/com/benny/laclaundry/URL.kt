@@ -2,6 +2,6 @@ package com.benny.laclaundry
 
 class URL {
     companion object{
-        val server = "http://192.168.42.96/serverlaundry/"
+        val server = "http://192.168.42.96/ServerLaundry/"
     }
 }

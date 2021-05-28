@@ -11,13 +11,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.benny.laclaundry.R
-import com.jacksonandroidnetworking.JacksonParserFactory
 import kotlinx.android.synthetic.main.activity_manage_pelanggan.*
 import kotlinx.android.synthetic.main.pelanggan_list.*
 import org.json.JSONObject
@@ -113,17 +111,16 @@ class ManagePelanggan : AppCompatActivity() {
             .addBodyParameter("idUser", sp.getInt("id",0).toString())
             .addBodyParameter("namaPelanggan", etNamaPelanggan.text.toString())
             .addBodyParameter("nohp", etNohp.text.toString())
-            .addBodyParameter("alamt", etAlamat.text.toString())
+            .addBodyParameter("alamat", etAlamat.text.toString())
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
 
                 override fun onResponse(response: JSONObject?) {
-
                     loading.dismiss()
                     Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_SHORT).show()
 
-                    if (response?.getString("message")?.contains("Berhasil")!!) {
+                    if (response?.getString("message")?.contains("successfully")!!) {
                         this@ManagePelanggan.finish()
                     }
                 }
@@ -141,7 +138,7 @@ class ManagePelanggan : AppCompatActivity() {
         loading.setMessage("Menghapus data...")
         loading.show()
 
-        AndroidNetworking.get(ApiEndPoint.DELETE + "?idPelanggan=" + etIDPelanggan + "?idUser=" + sp.getInt("id",0))
+        AndroidNetworking.get(ApiEndPoint.DELETE + "?idPelanggan=" + etIDPelanggan.text.toString() + "&idUser=" + sp.getInt("id",0))
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {
@@ -149,7 +146,7 @@ class ManagePelanggan : AppCompatActivity() {
                     loading.dismiss()
                     Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_SHORT).show()
 
-                    if (response?.getString("message")?.contains("Berhasil")!!) {
+                    if (response?.getString("message")?.contains("successfully")!!) {
                         this@ManagePelanggan.finish()
                     }
                 }
