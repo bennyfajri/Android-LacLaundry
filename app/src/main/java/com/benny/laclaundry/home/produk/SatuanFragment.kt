@@ -43,7 +43,9 @@ class SatuanFragment : Fragment() {
         showRecyclerList()
 
         fabTambahProduk.setOnClickListener{
-            startActivity(Intent(context, ManageProduk::class.java))
+            val intent =  Intent(context, ManageProduk::class.java)
+            intent.putExtra("jenisProduk","Satuan")
+            startActivity(intent)
         }
     }
     private fun showRecyclerList() {

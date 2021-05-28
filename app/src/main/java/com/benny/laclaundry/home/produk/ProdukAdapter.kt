@@ -34,7 +34,7 @@ class ProdukAdapter(private val context: Context?, private val arrayList: ArrayL
             intent.putExtra("idProduk",produk.idProduk)
             intent.putExtra("jenis",produk.jenis)
             intent.putExtra("namaProduk",produk.namaProduk)
-            intent.putExtra("harga",produk.hargaProduk)
+            intent.putExtra("hargaProduk",produk.hargaProduk)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context?.startActivity(intent)
         }

@@ -22,16 +22,26 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
 
-        <Spinner
-            android:id="@+id/spinJenis"
+        <EditText
+            android:id="@+id/etidProduk"
             android:layout_width="match_parent"
-            android:layout_height="30dp"/>
+            android:layout_height="wrap_content"
+            android:hint="ID Produk"
+            android:visibility="gone"/>
+
+
 
         <EditText
             android:id="@+id/etNamaProduk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nama Produk"/>
+
+        <EditText
+            android:id="@+id/etJenis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jenis produk"/>
 
         <EditText
             android:id="@+id/etHargaProduk"
