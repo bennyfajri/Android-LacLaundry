@@ -23,10 +23,60 @@
             android:textSize="24sp"
             android:textStyle="bold"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih customer"
+            android:textColor="@color/black"/>
+
         <Spinner
             android:id="@+id/spinPelanggan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Pelanggan baru? Klik disini"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pilih Produk"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"/>
+
+        <Spinner
+            android:id="@+id/spinProduk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Harga"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/etHargaTrans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Harga produk"
+            android:enabled="false"/>
+
+        <Button
+            android:id="@+id/btnTambahTrans"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tambah pesanan"/>
+
+
+
+
         
     </LinearLayout>
 
