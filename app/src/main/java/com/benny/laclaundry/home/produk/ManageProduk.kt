@@ -82,7 +82,7 @@ class ManageProduk : AppCompatActivity() {
         loading.setMessage("Menambahkan data...")
         loading.show()
 
-        AndroidNetworking.post(ApiEndPoint.CREATE)
+        AndroidNetworking.post(ApiProduk.CREATE)
             .addBodyParameter("idUser", sp.getInt("id", 0 ).toString())
             .addBodyParameter("jenis", etJenis.text.toString())
             .addBodyParameter("namaProduk", etNamaProduk.text.toString())
@@ -113,7 +113,7 @@ class ManageProduk : AppCompatActivity() {
         loading.setMessage("Mengubah data...")
         loading.show()
 
-        AndroidNetworking.post(ApiEndPoint.UPDATE)
+        AndroidNetworking.post(ApiProduk.UPDATE)
             .addBodyParameter("idProduk", etidProduk.text.toString())
             .addBodyParameter("idUser", sp.getInt("id", 0 ).toString())
             .addBodyParameter("jenis", etJenis.text.toString())
@@ -145,7 +145,7 @@ class ManageProduk : AppCompatActivity() {
         loading.setMessage("Menghapus data...")
         loading.show()
 
-        AndroidNetworking.get(ApiEndPoint.DELETE + "?idProduk=" + etidProduk.text.toString() + "&idUser=" + sp.getInt("id",0))
+        AndroidNetworking.get(ApiProduk.DELETE + "?idProduk=" + etidProduk.text.toString() + "&idUser=" + sp.getInt("id",0))
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener{

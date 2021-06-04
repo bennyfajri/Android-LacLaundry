@@ -68,7 +68,7 @@ class SatuanFragment : Fragment() {
             ?.getSharedPreferences("user_info", Context.MODE_PRIVATE)
         val id: Int = preferences!!.getInt("id",0)
 
-        AndroidNetworking.get(ApiEndPoint.READ_SATUAN+"?idUser="+ id)
+        AndroidNetworking.get(ApiProduk.READ_SATUAN+"?idUser="+ id)
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object  : JSONObjectRequestListener {
