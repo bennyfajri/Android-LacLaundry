@@ -8,9 +8,9 @@ data class SigninResponse(
     val message:String,
     val data: Laundry
 ){
-    public fun toJson() = klaxon.toJsonString(this)
-
-    companion object {
-        public fun fromJson(json: String) = klaxon.parse<SigninResponse>(json)
-    }
+//    public fun toJson() = klaxon.toJsonString(this)
+//
+//    companion object {
+//        public fun fromJson(json: String) = klaxon.parse<SigninResponse>(json)
+//    }
 }
