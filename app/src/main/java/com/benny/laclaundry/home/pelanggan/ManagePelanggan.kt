@@ -76,7 +76,7 @@ class ManagePelanggan : AppCompatActivity() {
         loading.setMessage("Menambahkan data..")
         loading.show()
 
-        AndroidNetworking.post(ApiEndPoint.CREATE)
+        AndroidNetworking.post(ApiPelanggan.CREATE)
             .addBodyParameter("idUser", sp.getInt("id", 0).toString())
             .addBodyParameter("namaPelanggan",etNamaPelanggan.text.toString())
             .addBodyParameter("nohp",etNohp.text.toString())
@@ -106,7 +106,7 @@ class ManagePelanggan : AppCompatActivity() {
         loading.setMessage("Mengubah data...")
         loading.show()
 
-        AndroidNetworking.post(ApiEndPoint.UPDATE)
+        AndroidNetworking.post(ApiPelanggan.UPDATE)
             .addBodyParameter("idPelanggan", etIDPelanggan.text.toString())
             .addBodyParameter("idUser", sp.getInt("id",0).toString())
             .addBodyParameter("namaPelanggan", etNamaPelanggan.text.toString())
@@ -138,7 +138,7 @@ class ManagePelanggan : AppCompatActivity() {
         loading.setMessage("Menghapus data...")
         loading.show()
 
-        AndroidNetworking.get(ApiEndPoint.DELETE + "?idPelanggan=" + etIDPelanggan.text.toString() + "&idUser=" + sp.getInt("id",0))
+        AndroidNetworking.get(ApiPelanggan.DELETE + "?idPelanggan=" + etIDPelanggan.text.toString() + "&idUser=" + sp.getInt("id",0))
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {

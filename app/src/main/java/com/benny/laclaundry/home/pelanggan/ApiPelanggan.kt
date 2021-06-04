@@ -2,7 +2,7 @@ package com.benny.laclaundry.home.pelanggan
 
 import com.benny.laclaundry.URL
 
-class ApiEndPoint {
+class ApiPelanggan {
     companion object{
         private val SERVER = URL.server
         val CREATE = SERVER+"add_pelanggan.php"

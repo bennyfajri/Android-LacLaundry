@@ -58,7 +58,7 @@ class ListPelanggan : AppCompatActivity() {
         loading.setMessage("Memuat Data...")
         loading.show()
 
-        AndroidNetworking.get(ApiEndPoint.READ + "?idUser=" + sp.getInt("id",0).toString())
+        AndroidNetworking.get(ApiPelanggan.READ + "?idUser=" + sp.getInt("id",0).toString())
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object: JSONObjectRequestListener{
