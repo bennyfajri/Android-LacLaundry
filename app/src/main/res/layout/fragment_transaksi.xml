@@ -27,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Pilih customer"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:layout_marginTop="20dp"/>
 
         <Spinner
             android:id="@+id/spinPelanggan"
@@ -36,10 +37,11 @@
             android:padding="16dp"/>
 
         <TextView
+            android:id="@+id/txtTambahPelanggan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Pelanggan baru? Klik disini"/>
+            android:text="Pelanggan baru? Tap disini"
+            android:textSize="10sp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -53,6 +55,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"/>
+
+        <TextView
+            android:id="@+id/txtTambahProduk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Produk tidak ada? Tambah baru"
+            android:textSize="10sp"/>
 
         <TextView
             android:layout_width="wrap_content"
