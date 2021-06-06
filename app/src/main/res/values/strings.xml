@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">LacLaundry</string>
+    <string name="example_by_case_sign_up">Belum punya akun ? <u>Daftar Disini</u></string>
+    <string name="register"><u>Kembali ke Login</u></string>
 </resources>

@@ -7,7 +7,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvList_pelanggan"
@@ -19,13 +21,22 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="12dp"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imgPelanggan"
+                android:layout_width="67dp"
+                android:layout_height="63dp"
+                android:src="@drawable/pelanggan"
+                android:layout_marginTop="8dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="10dp">
+
                 <TextView
                     android:id="@+id/txtNamaPelanggan"
                     android:layout_width="wrap_content"
@@ -33,13 +44,13 @@
                     android:text="Nama Pelanggan"
                     android:textColor="@android:color/holo_blue_bright"
                     android:textSize="16sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/txtNohp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="NoHP"/>
+                    android:text="NoHP" />
 
                 <TextView
                     android:id="@+id/txtAlamat"
