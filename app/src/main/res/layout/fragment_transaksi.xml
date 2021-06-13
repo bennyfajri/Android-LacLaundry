@@ -81,7 +81,7 @@
             android:id="@+id/btnTambahTrans"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tambah pesanan"/>
+            android:text="Lanjut"/>
 
 
 

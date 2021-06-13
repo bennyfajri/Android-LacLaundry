@@ -7,6 +7,6 @@ import com.benny.laclaundry.R
 class KonfirmasiPesanan : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_konfirmasi_pesanan)
+        setContentView(R.layout.activity_konfirmasi_pesanan) 
     }
 }

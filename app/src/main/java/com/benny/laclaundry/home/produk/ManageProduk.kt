@@ -36,11 +36,8 @@ class ManageProduk : AppCompatActivity() {
             }
         }
         if(i.hasExtra("jenisProduk")){
-            if(i.getStringExtra("jenisProduk").equals("Satuan")){
-                etJenis.setText("Satuan")
-            }
             if(i.getStringExtra("jenisProduk").equals("Kiloan")){
-                etJenis.setText("Kiloan")
+                spinJenisProduk.setSelection(1)
             }
         }
 
@@ -68,9 +65,9 @@ class ManageProduk : AppCompatActivity() {
         etidProduk.visibility = View.VISIBLE
         etidProduk.setText(i.getIntExtra("idProduk",0).toString())
         etidProduk.isEnabled = false
-        etJenis.setText(i.getStringExtra("jenis"))
         etNamaProduk.setText(i.getStringExtra("namaProduk"))
         etHargaProduk.setText(i.getIntExtra("hargaProduk",0).toString())
+        txtManageProduk.setText("Ubah Produk")
 
         btnTambahProduk.visibility = View.GONE
         btnUpdateProduk.visibility = View.VISIBLE
@@ -84,7 +81,7 @@ class ManageProduk : AppCompatActivity() {
 
         AndroidNetworking.post(ApiProduk.CREATE)
             .addBodyParameter("idUser", sp.getInt("id", 0 ).toString())
-            .addBodyParameter("jenis", etJenis.text.toString())
+            .addBodyParameter("jenis", spinJenisProduk.selectedItem.toString())
             .addBodyParameter("namaProduk", etNamaProduk.text.toString())
             .addBodyParameter("hargaProduk", etHargaProduk.text.toString())
             .setPriority(Priority.MEDIUM)
@@ -116,7 +113,7 @@ class ManageProduk : AppCompatActivity() {
         AndroidNetworking.post(ApiProduk.UPDATE)
             .addBodyParameter("idProduk", etidProduk.text.toString())
             .addBodyParameter("idUser", sp.getInt("id", 0 ).toString())
-            .addBodyParameter("jenis", etJenis.text.toString())
+            .addBodyParameter("jenis", spinJenisProduk.selectedItem.toString())
             .addBodyParameter("namaProduk", etNamaProduk.text.toString())
             .addBodyParameter("hargaProduk", etHargaProduk.text.toString())
             .setPriority(Priority.MEDIUM)

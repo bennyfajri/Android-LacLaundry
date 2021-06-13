@@ -65,6 +65,7 @@ class ManagePelanggan : AppCompatActivity() {
         etNamaPelanggan.setText(i.getStringExtra("namaPelanggan"))
         etNohp.setText(i.getStringExtra("nohp"))
         etAlamat.setText(i.getStringExtra("alamat"))
+        txtManagePelanggan.setText("Ubah Produk")
 
         btnTambahPelanggan.visibility = View.GONE
         btnUpdatePelanggan.visibility = View.VISIBLE
