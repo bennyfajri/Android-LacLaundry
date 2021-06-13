@@ -3,15 +3,15 @@
     <item
         android:id="@+id/nav_home"
         android:title="Home"
-        android:icon="@drawable/ic_home"/>
+        android:icon="@drawable/home"/>
 
     <item
         android:id="@+id/nav_transaksi"
         android:title="Transaksi"
-        android:icon="@drawable/ic_addtrans"/>
+        android:icon="@drawable/pesanan"/>
 
     <item
         android:id="@+id/nav_laporan"
         android:title="Laporan"
-        android:icon="@drawable/ic_report"/>
+        android:icon="@drawable/dataorder"/>
 </menu>

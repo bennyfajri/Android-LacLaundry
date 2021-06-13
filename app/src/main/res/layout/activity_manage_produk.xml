@@ -16,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
         <TextView
-            android:id="@+id/txtManageProduk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tambah Produk"
@@ -38,12 +37,11 @@
             android:layout_height="wrap_content"
             android:hint="Nama Produk"/>
 
-        <Spinner
-            android:id="@+id/spinJenisProduk"
+        <EditText
+            android:id="@+id/etJenis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:entries="@array/jenisProduk"/>
+            android:hint="Jenis produk"/>
 
         <EditText
             android:id="@+id/etHargaProduk"

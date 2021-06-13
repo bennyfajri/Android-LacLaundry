@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".data.remote.RegisterActivity">
+    tools:context=".data.remote.RegisterActivity"
+    android:background="@drawable/background2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,47 +17,106 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="230dp"
+            android:layout_marginBottom="16dp"
+            android:background="#E5E5E5"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                app:cornerRadius="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#E5E5E5"
+            android:layout_marginBottom="16dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNamaLaundry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama Laundry"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#E5E5E5"
+            android:layout_marginBottom="16dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNamaUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nama User"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#E5E5E5"
+            android:layout_marginBottom="16dp"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
             android:text="Register"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:textColor="@color/black"
+            app:backgroundTint="#FFCCFFFF"
+            app:cornerRadius="16dp"
+            />
 
-        <EditText
-            android:id="@+id/etUserName"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/textviewKembalikeLogin"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Username"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/etNamaLaundry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nama Laundry"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/etNamaUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nama User"
-            android:inputType="text" />
-
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:inputType="textPassword" />
-
-        <Button
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Register" />
+            android:layout_marginTop="30dp"
+            android:layout_gravity="right"
+            android:text="@string/register"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
