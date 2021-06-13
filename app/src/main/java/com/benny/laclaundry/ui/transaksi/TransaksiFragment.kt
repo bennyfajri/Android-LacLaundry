@@ -38,6 +38,7 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
     lateinit var sp: SharedPreferences
     lateinit var etHarga : EditText
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -67,7 +68,19 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
     }
 
     private fun transaksiBaru() {
-        TODO("Not yet implemented")
+        var pelanggan = spinPelanggan.selectedItem.toString()
+        var produk = spinProduk.selectedItem.toString()
+        var arrSplitPelanggan: List<String> = pelanggan.split(", ")
+        var arrSplitProduk: List<String> = produk.split(", ")
+        var jumlah = etHarga.text.toString().toInt() * etJumlahTransaksi.text.toString().toInt()
+        val intent = Intent(context, KonfirmasiPesanan::class.java)
+        intent.putExtra("hargaDibayar", jumlah)
+        intent.putExtra("idPelanggan", arrSplitPelanggan[2])
+        intent.putExtra("namaPelanggan", arrSplitPelanggan[0])
+        intent.putExtra("idProduk", arrSplitProduk[2])
+        intent.putExtra("namaProduk", arrSplitProduk[0])
+        startActivity(intent)
+        Toast.makeText(context, "jumlah : $jumlah", Toast.LENGTH_LONG ).show()
     }
 
     override fun onResume() {
@@ -83,44 +96,56 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
 
         val preferences = this.activity
             ?.getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val id: Int = preferences!!.getInt("id",0)
+        val id: Int = preferences!!.getInt("id", 0)
 
         AndroidNetworking.get(ApiPelanggan.READ + "?idUser=" + id)
             .setPriority(Priority.MEDIUM)
             .build()
-            .getAsJSONObject(object: JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     arrayPelanggan.clear()
                     val jsonArray = response?.optJSONArray("result")
 
-                    if(jsonArray?.length() == 0){
+                    if (jsonArray?.length() == 0) {
                         loading.dismiss()
-                        Toast.makeText(context, "Data pelanggan kosong, tambah data pelanggan..",Toast.LENGTH_LONG).show()
+                        Toast.makeText(
+                            context,
+                            "Data pelanggan kosong, tambah data pelanggan..",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
 
-                    for(i in 0 until  jsonArray?.length()!!){
+                    for (i in 0 until jsonArray?.length()!!) {
                         val jsonObject = jsonArray?.optJSONObject(i)
 
-                        arrayPelanggan.add(ModelPelanggan(jsonObject.getInt("ID_Pelanggan"),
-                            jsonObject.getInt("ID_User"),
-                            jsonObject.getString("Nama_Pelanggan"),
-                            jsonObject.getString("NoHP"),
-                            jsonObject.getString("Alamat")))
+                        arrayPelanggan.add(
+                            ModelPelanggan(
+                                jsonObject.getInt("ID_Pelanggan"),
+                                jsonObject.getInt("ID_User"),
+                                jsonObject.getString("Nama_Pelanggan"),
+                                jsonObject.getString("NoHP"),
+                                jsonObject.getString("Alamat")
+                            )
+                        )
 
-                        if(jsonArray?.length() - 1 == i){
+                        if (jsonArray?.length() - 1 == i) {
                             loading.dismiss()
-                            var adapter: ArrayAdapter<ModelPelanggan> = ArrayAdapter<ModelPelanggan>(
-                                context!!, android.R.layout.simple_spinner_item, arrayPelanggan)
+                            var adapter: ArrayAdapter<ModelPelanggan> =
+                                ArrayAdapter<ModelPelanggan>(
+                                    context!!, android.R.layout.simple_spinner_item, arrayPelanggan
+                                )
                             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                             spinPelanggan.adapter = adapter
-                            spinPelanggan.setOnItemSelectedListener(object : OnItemSelectedListener {
+                            spinPelanggan.setOnItemSelectedListener(object :
+                                OnItemSelectedListener {
                                 override fun onItemSelected(
                                     parent: AdapterView<*>,
                                     view: View,
                                     position: Int,
                                     id: Long
                                 ) {
-                                    val pelanggan: ModelPelanggan = parent.selectedItem as ModelPelanggan
+                                    val pelanggan: ModelPelanggan =
+                                        parent.selectedItem as ModelPelanggan
                                     displayUserData(pelanggan)
                                 }
 
@@ -133,7 +158,7 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
                 override fun onError(anError: ANError?) {
                     loading.dismiss()
                     Log.e("ONERROR", anError?.errorDetail?.toString()!!)
-                    Toast.makeText(context,"Connection Failure", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Connection Failure", Toast.LENGTH_LONG).show()
                 }
             })
     }
@@ -149,39 +174,49 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
 
             val preferences = this.activity
                 ?.getSharedPreferences("user_info", Context.MODE_PRIVATE)
-            val id: Int = preferences!!.getInt("id",0)
+            val id: Int = preferences!!.getInt("id", 0)
 
-            AndroidNetworking.get(ApiProduk.READ_SEMUA+"?idUser="+ id)
+            AndroidNetworking.get(ApiProduk.READ_SEMUA + "?idUser=" + id)
                 .setPriority(Priority.MEDIUM)
                 .build()
-                .getAsJSONObject(object  : JSONObjectRequestListener {
+                .getAsJSONObject(object : JSONObjectRequestListener {
                     override fun onResponse(response: JSONObject?) {
                         arrayProduk.clear()
                         val jsonArray = response?.optJSONArray("result")
 
-                        if(jsonArray?.length() == 0 ){
+                        if (jsonArray?.length() == 0) {
                             loading.dismiss()
-                            Toast.makeText(context, "Data Produk Kosong, Tambahkan data terlebih dahulu", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                context,
+                                "Data Produk Kosong, Tambahkan data terlebih dahulu",
+                                Toast.LENGTH_LONG
+                            ).show()
                         }
 
-                        for(i in 0 until jsonArray?.length()!!){
+                        for (i in 0 until jsonArray?.length()!!) {
                             val jsonObject = jsonArray?.optJSONObject(i)
 
-                            arrayProduk.add(ModelProduk(jsonObject.getInt("ID_Produk"),
-                                jsonObject.getInt("ID_User"),
-                                jsonObject.getString("Jenis"),
-                                jsonObject.getString("Nama_Produk"),
-                                jsonObject.getInt("Harga_Produk")))
-
-                            if(jsonArray?.length() - 1 == i){
-                                loading.dismiss()
-                                var adapterProduk: ArrayAdapter<ModelProduk> = ArrayAdapter<ModelProduk>(
-                                    requireContext(),
-                                    android.R.layout.simple_spinner_item, arrayProduk
+                            arrayProduk.add(
+                                ModelProduk(
+                                    jsonObject.getInt("ID_Produk"),
+                                    jsonObject.getInt("ID_User"),
+                                    jsonObject.getString("Jenis"),
+                                    jsonObject.getString("Nama_Produk"),
+                                    jsonObject.getInt("Harga_Produk")
                                 )
+                            )
+
+                            if (jsonArray?.length() - 1 == i) {
+                                loading.dismiss()
+                                var adapterProduk: ArrayAdapter<ModelProduk> =
+                                    ArrayAdapter<ModelProduk>(
+                                        requireContext(),
+                                        android.R.layout.simple_spinner_item, arrayProduk
+                                    )
                                 adapterProduk.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                                 spinProduk.adapter = adapterProduk
-                                spinProduk.setOnItemSelectedListener(object : OnItemSelectedListener {
+                                spinProduk.setOnItemSelectedListener(object :
+                                    OnItemSelectedListener {
                                     override fun onItemSelected(
                                         parent: AdapterView<*>,
                                         view: View,

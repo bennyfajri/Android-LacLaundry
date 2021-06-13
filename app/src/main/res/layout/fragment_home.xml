@@ -7,16 +7,6 @@
     tools:context=".ui.home.HomeFragment"
     android:background="@drawable/backgroundhome">
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/nav_bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="30dp"
+        android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,16 +44,16 @@
 
         <ImageButton
             android:id="@+id/btnProduk"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:elevation="4dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/produk" />
 
         <ImageButton
             android:id="@+id/btnLaporan"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:elevation="4dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/laporan" />
@@ -83,8 +73,8 @@
 
         <ImageButton
             android:id="@+id/btnPelanggan"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             android:elevation="4dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/pelanggan" />
