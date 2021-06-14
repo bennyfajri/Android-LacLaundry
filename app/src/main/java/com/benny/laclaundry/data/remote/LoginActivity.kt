@@ -90,6 +90,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                                         etUserName.text.toString(),
                                         etPassword.text.toString(),
                                         response.body()!!.data.Nama_Laundry,
+                                        response.body()!!.data.Alamat,
                                         response.body()!!.data.ID_User
                                     )
                                 }
@@ -115,13 +116,14 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun remember_user(username: String, password: String,namaLaundry: String, idLaundry: Int){
+    private fun remember_user(username: String, password: String,namaLaundry: String,alamatLaundry: String, idLaundry: Int){
         sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
 
         val editor = sp.edit()
         editor.putString("username", username)
         editor.putString("password", password)
         editor.putString("namaLaundry", namaLaundry)
+        editor.putString("alamatLaundry", alamatLaundry)
         editor.putInt("id", idLaundry)
         editor.commit()
     }

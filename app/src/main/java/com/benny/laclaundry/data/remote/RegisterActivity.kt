@@ -21,6 +21,7 @@ class RegisterActivity: AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+        supportActionBar?.hide()
 
         btnRegister.setOnClickListener(this)
     }
@@ -31,15 +32,15 @@ class RegisterActivity: AppCompatActivity(), View.OnClickListener {
                 if(validation()){
                     val json = JSONObject()
                     json.put("username", etUserName.text.toString())
-                    json.put("namalaundry", etNamaLaundry.text.toString())
-                    json.put("namauser",etNamaUser.text.toString())
+                    json.put("namaLaundry", etNamaLaundry.text.toString())
+                    json.put("alamat",etAlamatLaundry.text.toString())
                     json.put("password",etPassword.text.toString())
 
                     ApiService.loginApiCall().doRegister(
                         SignupRequest(
                             etUserName.text.toString(),
                             etNamaLaundry.text.toString(),
-                            etNamaUser.text.toString(),
+                            etAlamatLaundry.text.toString(),
                             etPassword.text.toString()
                         )
                     ).enqueue(object : Callback<SignupResponse>{
@@ -73,7 +74,7 @@ class RegisterActivity: AppCompatActivity(), View.OnClickListener {
         var value = true
 
         val namaLaundry = etNamaLaundry.text.toString()
-        val namaUser = etNamaUser.text.toString()
+        val alamatLaundry = etAlamatLaundry.text.toString()
         val username = etUserName.text.toString()
         val password = etPassword.text.toString()
 
@@ -83,9 +84,9 @@ class RegisterActivity: AppCompatActivity(), View.OnClickListener {
             value = false
         }
 
-        if(namaUser.isEmpty()){
-            etNamaUser.error = "Nama User Kosong"
-            etNamaUser.requestFocus()
+        if(alamatLaundry.isEmpty()){
+            etAlamatLaundry.error = "Alamat Laundry"
+            etAlamatLaundry.requestFocus()
             value = false
         }
 

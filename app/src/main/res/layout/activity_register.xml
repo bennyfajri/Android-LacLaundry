@@ -66,10 +66,10 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNamaUser"
+                android:id="@+id/etAlamatLaundry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Nama User"
+                android:hint="Alamat Laundry"
                 android:inputType="textCapSentences"
                 android:maxLines="1"
                 />

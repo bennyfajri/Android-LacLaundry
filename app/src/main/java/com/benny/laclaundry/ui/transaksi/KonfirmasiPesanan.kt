@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidnetworking.AndroidNetworking
@@ -32,7 +33,8 @@ class KonfirmasiPesanan : AppCompatActivity() {
     var cal = Calendar.getInstance()
     lateinit var idPelanggan: String
     lateinit var idProduk: String
-    var hargaDibayar: Int = 0
+    var hargaDibayar =  0
+    lateinit var etJumlahBayar : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +45,9 @@ class KonfirmasiPesanan : AppCompatActivity() {
 
         txtConfNamaPel.setText(i.getStringExtra("namaPelanggan").toString())
         txtConfNamaPr.setText(i.getStringExtra("namaProduk").toString())
-        txtTotalBayar.setText(i.getIntExtra("jumlah", 0).toString())
+        txtTotalBayar.setText(i.getIntExtra("hargaDibayar", 0).toString())
+        etJumlahBayar = findViewById(R.id.etJumlahBayar)
+        etJumlahBayar.setText("0")
 
         idPelanggan = i.getStringExtra("idPelanggan").toString()
         idProduk = i.getStringExtra("idProduk").toString()
@@ -99,13 +103,19 @@ class KonfirmasiPesanan : AppCompatActivity() {
     }
 
     private fun tambahTransaksi() {
+        val idUser = sp.getInt("id",0)
         var statusBayar = ""
         var jumlahBayar = etJumlahBayar.text.toString().toInt()
-        if (hargaDibayar == jumlahBayar || hargaDibayar >= jumlahBayar) {
+        if (hargaDibayar == jumlahBayar || jumlahBayar >= hargaDibayar) {
             statusBayar = "Lunas"
         } else {
             statusBayar = "Belum Lunas"
         }
+        val catatan = etCatatan.text.toString()
+        val metodeBayar = spinJenisPembayaran.selectedItem.toString()
+
+//        val pesan = "$idUser , $idProduk, $idPelanggan, $tanggalSelesai, \n$statusBayar, $jumlahBayar, ${etCatatan.text.toString()},\n ${spinJenisPembayaran.selectedItem.toString()}"
+//        Toast.makeText(applicationContext, pesan, Toast.LENGTH_LONG).show()
         val url = URL.server + "add_transaksi.php"
         val loading = ProgressDialog(this)
         loading.setMessage("Menyimpan data..")
@@ -118,6 +128,7 @@ class KonfirmasiPesanan : AppCompatActivity() {
             .addBodyParameter("tglSelesai", tanggalSelesai)
             .addBodyParameter("statusBayar", statusBayar)
             .addBodyParameter("totalBayar", jumlahBayar.toString())
+            .addBodyParameter("catatan", etCatatan.text.toString())
             .addBodyParameter("metodeBayar", spinJenisPembayaran.selectedItem.toString())
             .setPriority(Priority.MEDIUM)
             .build()
