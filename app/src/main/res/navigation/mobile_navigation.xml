@@ -16,8 +16,8 @@
         android:label="Transaksi"
         tools:layout="@layout/fragment_transaksi" />
     <fragment
-        android:id="@+id/nav_laporan"
-        android:name="com.benny.laclaundry.ui.laporan.LaporanFragment"
-        android:label="Laporan"
-        tools:layout="@layout/fragment_laporan" />
+        android:id="@+id/nav_order"
+        android:name="com.benny.laclaundry.ui.order.OrderanFragment"
+        android:label="Data Order"
+        tools:layout="@layout/fragment_orderan" />
 </navigation>
