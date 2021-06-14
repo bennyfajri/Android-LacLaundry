@@ -8,6 +8,6 @@ data class ModelPelanggan(
    val alamat: String?
 ){
    override fun toString(): String {
-      return "$namaPelanggan, $alamat, $idPelanggan"
+      return "$namaPelanggan; $alamat; $idPelanggan"
    }
 }

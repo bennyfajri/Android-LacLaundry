@@ -8,6 +8,6 @@ data class ModelProduk(
     val hargaProduk: Int,
 ){
     override fun toString(): String {
-        return "$namaProduk, $jenis, $idProduk"
+        return "$namaProduk; $jenis; $idProduk"
     }
 }
