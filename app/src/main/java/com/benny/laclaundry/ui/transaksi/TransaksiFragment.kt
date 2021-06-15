@@ -70,8 +70,8 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
     private fun transaksiBaru() {
         var pelanggan = spinPelanggan.selectedItem.toString()
         var produk = spinProduk.selectedItem.toString()
-        var arrSplitPelanggan: List<String> = pelanggan.split(", ")
-        var arrSplitProduk: List<String> = produk.split(", ")
+        var arrSplitPelanggan: List<String> = pelanggan.split("; ")
+        var arrSplitProduk: List<String> = produk.split("; ")
         var jumlah = etHarga.text.toString().toInt() * etJumlahTransaksi.text.toString().toInt()
         val intent = Intent(context, KonfirmasiPesanan::class.java)
         intent.putExtra("hargaDibayar", jumlah)

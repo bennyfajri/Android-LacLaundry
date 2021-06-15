@@ -33,7 +33,7 @@ class KonfirmasiPesanan : AppCompatActivity() {
     var cal = Calendar.getInstance()
     lateinit var idPelanggan: String
     lateinit var idProduk: String
-    var hargaDibayar =  0
+    var jumlahHarga =  0
     lateinit var etJumlahBayar : EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,15 +43,16 @@ class KonfirmasiPesanan : AppCompatActivity() {
         i = intent
         sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
 
-        txtConfNamaPel.setText(i.getStringExtra("namaPelanggan").toString())
-        txtConfNamaPr.setText(i.getStringExtra("namaProduk").toString())
-        txtTotalBayar.setText(i.getIntExtra("hargaDibayar", 0).toString())
-        etJumlahBayar = findViewById(R.id.etJumlahBayar)
-        etJumlahBayar.setText("0")
-
         idPelanggan = i.getStringExtra("idPelanggan").toString()
         idProduk = i.getStringExtra("idProduk").toString()
-        hargaDibayar = i.getIntExtra("hargaDibayar", 0)
+        jumlahHarga = i.getIntExtra("hargaDibayar", 0)
+
+        txtConfNamaPel.setText(i.getStringExtra("namaPelanggan").toString())
+        txtConfNamaPr.setText(i.getStringExtra("namaProduk").toString())
+        txtTotalBayar.setText(jumlahHarga.toString())
+
+        etJumlahBayar = findViewById(R.id.etJumlahBayar)
+        etJumlahBayar.setText("0")
 
         btnEstimasi.setOnClickListener {
             showDateDialog()
@@ -103,10 +104,10 @@ class KonfirmasiPesanan : AppCompatActivity() {
     }
 
     private fun tambahTransaksi() {
-        val idUser = sp.getInt("id",0)
+        val idUser = sp.getInt("id",0).toString()
         var statusBayar = ""
-        var jumlahBayar = etJumlahBayar.text.toString().toInt()
-        if (hargaDibayar == jumlahBayar || jumlahBayar >= hargaDibayar) {
+        var totalDibayar = etJumlahBayar.text.toString().toInt()
+        if ( totalDibayar >= jumlahHarga) {
             statusBayar = "Lunas"
         } else {
             statusBayar = "Belum Lunas"
@@ -122,14 +123,15 @@ class KonfirmasiPesanan : AppCompatActivity() {
         loading.show()
 
         AndroidNetworking.post(url)
-            .addBodyParameter("idUser", sp.getInt("id", 0).toString())
+            .addBodyParameter("idUser", idUser)
             .addBodyParameter("idProduk", idProduk)
             .addBodyParameter("idPelanggan", idPelanggan)
             .addBodyParameter("tglSelesai", tanggalSelesai)
             .addBodyParameter("statusBayar", statusBayar)
-            .addBodyParameter("totalBayar", jumlahBayar.toString())
-            .addBodyParameter("catatan", etCatatan.text.toString())
-            .addBodyParameter("metodeBayar", spinJenisPembayaran.selectedItem.toString())
+            .addBodyParameter("jumlahHarga", jumlahHarga.toString())
+            .addBodyParameter("totalDibayar", totalDibayar.toString())
+            .addBodyParameter("catatan", catatan)
+            .addBodyParameter("metodeBayar", metodeBayar)
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {

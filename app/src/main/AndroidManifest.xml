@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LacLaundry"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.transaksi.KonfirmasiPesanan"></activity>
+        <activity android:name=".ui.order.ManageOrder"></activity>
+        <activity android:name=".ui.transaksi.KonfirmasiPesanan" />
         <activity android:name=".home.pelanggan.ManagePelanggan" />
         <activity android:name=".home.produk.ManageProduk" />
         <activity android:name=".home.laporan.ActivityLaporan" />

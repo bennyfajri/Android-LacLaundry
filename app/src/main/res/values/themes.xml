@@ -20,4 +20,8 @@
         <item name="colorPrimaryDark">@color/purple_500</item>
         <item name="colorAccent">@color/purple_700</item>
     </style>
+
+    <style name="Widget.MyApp.ActionBar" parent="@android:style/Widget.ActionBar">
+        <item name="android:background">@color/purple_500</item>
+    </style>
 </resources>

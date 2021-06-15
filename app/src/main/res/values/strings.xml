@@ -10,4 +10,8 @@
         <item>Sekarang</item>
         <item>Nanti</item>
     </string-array>
+    <string-array name="statusBayar">
+        <item>Belum Lunas</item>
+        <item>Lunas</item>
+    </string-array>
 </resources>
