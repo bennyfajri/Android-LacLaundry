@@ -66,6 +66,7 @@ class OrderAdapter(private val context: Context?, private val arrayList: ArrayLi
             intent.putExtra("nohp", order.nohp)
             intent.putExtra("idProduk", order.idProduk)
             intent.putExtra("namaProduk", order.namaProduk)
+            intent.putExtra("hargaProduk", order.hargaProduk)
             intent.putExtra("jumlah", order.jumlah)
             intent.putExtra("tglMasuk", order.tglMasuk)
             intent.putExtra("tglSelesai", order.tglSelesai)

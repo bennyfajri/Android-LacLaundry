@@ -45,6 +45,7 @@ class ManageOrder : AppCompatActivity() {
     var jumlah = 0
     var jumlahBayar = 0
     var totalBayar = 0
+    var hargaProduk = 0
     lateinit var catatan: String
     lateinit var statusBayar: String
     lateinit var namaLaundry: String
@@ -72,8 +73,8 @@ class ManageOrder : AppCompatActivity() {
 
     private fun makeQrCode() {
         val text = "$namaLaundry\n $alamatLaundry\n==============\n" +
-                "Nama: $namaPelanggan\nAamat : $alamatPelanggan\nNo HP : $nohp\nTanggal : $tglMasuk\n==============\n" +
-                "Pesanan : $namaProduk\n"
+                "Nama: $namaPelanggan\nAamat : $alamatPelanggan\nNo HP : $nohp\nTanggal : $tglMasuk\nEstimasi: $tglSelesai\n==============\n" +
+                "Pesanan : $namaProduk\nHarga: $jumlahBayar\nBerat(Kg) / Jumlah(Pcs) : $jumlah\nTotal: $jumlahBayar"
     }
 
     private fun getIntentValue() {
@@ -89,6 +90,7 @@ class ManageOrder : AppCompatActivity() {
         nohp = i.getStringExtra("nohp").toString()
         idProduk = i.getStringExtra("idProduk").toString()
         namaProduk = i.getStringExtra("namaProduk").toString()
+        hargaProduk = i.getIntExtra("hargaProduk",0)
 
 
         val tglMasukParse = i.getStringExtra("tglMasuk").toString()
@@ -119,6 +121,7 @@ class ManageOrder : AppCompatActivity() {
         txtOrderNamaPr.setText(namaProduk)
         txtOrderJumlah.setText(jumlah.toString())
         txtOrderJumlahBayar.setText("Rp. ${jumlahBayar.toString()}")
+        txtOrderHargaPr.setText("Rp. ${hargaProduk.toString()}")
         txtOrderTglMasuk.setText(tglMasuk)
         txtOrderTglSelesai.setText(tglSelesai)
         etOrderCatatan.setText(catatan)

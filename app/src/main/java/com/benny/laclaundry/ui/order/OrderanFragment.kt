@@ -98,6 +98,7 @@ class OrderanFragment : Fragment() {
                                 jsonObject.getString("NoHP"),
                                 jsonObject.getInt("ID_Produk"),
                                 jsonObject.getString("Nama_Produk"),
+                                jsonObject.getInt("Harga_Produk"),
                                 jsonObject.getInt("Jumlah"),
                                 jsonObject.getString("Tgl_Masuk"),
                                 jsonObject.getString("Tgl_Selesai"),
