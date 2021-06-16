@@ -24,6 +24,7 @@
             android:src="@drawable/pencarian" />
     </LinearLayout>
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,10 +34,16 @@
         app:cardBackgroundColor="@color/grey"
         android:padding="20dp">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvOrderan"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeOrder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:listitem="@layout/item_order"/>
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOrderan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_order"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     </androidx.cardview.widget.CardView>
 </LinearLayout>

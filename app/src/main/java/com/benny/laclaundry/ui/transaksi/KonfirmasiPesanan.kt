@@ -33,8 +33,9 @@ class KonfirmasiPesanan : AppCompatActivity() {
     var cal = Calendar.getInstance()
     lateinit var idPelanggan: String
     lateinit var idProduk: String
-    var jumlahHarga =  0
-    lateinit var etJumlahBayar : EditText
+    lateinit var jumlah: String
+    var jumlahHarga = 0
+    lateinit var etJumlahBayar: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,7 @@ class KonfirmasiPesanan : AppCompatActivity() {
 
         idPelanggan = i.getStringExtra("idPelanggan").toString()
         idProduk = i.getStringExtra("idProduk").toString()
+        jumlah = i.getStringExtra("jumlah").toString()
         jumlahHarga = i.getIntExtra("hargaDibayar", 0)
 
         txtConfNamaPel.setText(i.getStringExtra("namaPelanggan").toString())
@@ -104,16 +106,20 @@ class KonfirmasiPesanan : AppCompatActivity() {
     }
 
     private fun tambahTransaksi() {
-        val idUser = sp.getInt("id",0).toString()
+        val idUser = sp.getInt("id", 0).toString()
         var statusBayar = ""
         var totalDibayar = etJumlahBayar.text.toString().toInt()
-        if ( totalDibayar >= jumlahHarga) {
+        if (totalDibayar >= jumlahHarga) {
             statusBayar = "Lunas"
         } else {
             statusBayar = "Belum Lunas"
         }
         val catatan = etCatatan.text.toString()
         val metodeBayar = spinJenisPembayaran.selectedItem.toString()
+//        val alamatLaundry = sp.getString("alamatLaundry", "").toString()
+//        val namaLaundry = sp.getString("namaLaundry", "").toString()
+//
+//        val pesan = "$alamatLaundry, $namaLaundry"
 
 //        val pesan = "$idUser , $idProduk, $idPelanggan, $tanggalSelesai, \n$statusBayar, $jumlahBayar, ${etCatatan.text.toString()},\n ${spinJenisPembayaran.selectedItem.toString()}"
 //        Toast.makeText(applicationContext, pesan, Toast.LENGTH_LONG).show()
@@ -132,6 +138,7 @@ class KonfirmasiPesanan : AppCompatActivity() {
             .addBodyParameter("totalDibayar", totalDibayar.toString())
             .addBodyParameter("catatan", catatan)
             .addBodyParameter("metodeBayar", metodeBayar)
+            .addBodyParameter("jumlah", jumlah)
             .setPriority(Priority.MEDIUM)
             .build()
             .getAsJSONObject(object : JSONObjectRequestListener {

@@ -8,6 +8,7 @@ data class ModelOrder(
     val nohp: String,
     val idProduk: Int,
     val namaProduk: String,
+    val jumlah: Int,
     val tglMasuk: String,
     val tglSelesai: String,
     val metodeBayar: String,

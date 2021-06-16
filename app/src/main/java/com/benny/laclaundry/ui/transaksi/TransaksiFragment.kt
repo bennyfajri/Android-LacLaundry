@@ -72,15 +72,17 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
         var produk = spinProduk.selectedItem.toString()
         var arrSplitPelanggan: List<String> = pelanggan.split("; ")
         var arrSplitProduk: List<String> = produk.split("; ")
-        var jumlah = etHarga.text.toString().toInt() * etJumlahTransaksi.text.toString().toInt()
+        var hargaDibayar = etHarga.text.toString().toInt() * etJumlahTransaksi.text.toString().toInt()
+        val jumlah = etJumlahTransaksi.text.toString()
         val intent = Intent(context, KonfirmasiPesanan::class.java)
-        intent.putExtra("hargaDibayar", jumlah)
+        intent.putExtra("hargaDibayar", hargaDibayar)
         intent.putExtra("idPelanggan", arrSplitPelanggan[2])
         intent.putExtra("namaPelanggan", arrSplitPelanggan[0])
         intent.putExtra("idProduk", arrSplitProduk[2])
         intent.putExtra("namaProduk", arrSplitProduk[0])
+        intent.putExtra("jumlah", jumlah)
         startActivity(intent)
-        Toast.makeText(context, "jumlah : $jumlah", Toast.LENGTH_LONG ).show()
+//        Toast.makeText(context, "jumlah : $jumlah", Toast.LENGTH_LONG ).show()
     }
 
     override fun onResume() {

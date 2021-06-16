@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,7 @@ import com.benny.laclaundry.home.produk.ModelProduk
 import com.benny.laclaundry.home.produk.ProdukAdapter
 import com.jacksonandroidnetworking.JacksonParserFactory
 import kotlinx.android.synthetic.main.fragment_kiloan.*
+import kotlinx.android.synthetic.main.fragment_orderan.*
 import org.json.JSONObject
 
 class OrderanFragment : Fragment() {
@@ -43,6 +45,14 @@ class OrderanFragment : Fragment() {
         rvOrder = view.findViewById(R.id.rvOrderan)
         rvOrder.setHasFixedSize(true)
         showRecyclerList()
+
+        swipeOrder.setOnRefreshListener {
+            Handler().postDelayed(Runnable {
+                swipeOrder.isRefreshing = false
+                showRecyclerList()
+                loadAllOrder()
+            }, 1000)
+        }
     }
 
     private fun showRecyclerList() {
@@ -57,37 +67,38 @@ class OrderanFragment : Fragment() {
     }
 
     private fun loadAllOrder() {
-        val loading = ProgressDialog(context)
-        loading.setMessage("Memuat data..")
-        loading.show()
-
         val preferences = this.activity
             ?.getSharedPreferences("user_info", Context.MODE_PRIVATE)
-        val id: Int = preferences!!.getInt("id",0)
+        val id: Int = preferences!!.getInt("id", 0)
 
-        AndroidNetworking.get(ApiOrder.READ+"?idUser="+id)
+        AndroidNetworking.get(ApiOrder.READ + "?idUser=" + id)
             .setPriority(Priority.MEDIUM)
             .build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     arrayList.clear()
                     val jsonArray = response?.optJSONArray("result")
 
-                    if(jsonArray?.length() == 0 ){
-                        loading.dismiss()
-                        Toast.makeText(context, "Data Produk Kosong, Tambahkan data terlebih dahulu", Toast.LENGTH_LONG).show()
+                    if (jsonArray?.length() == 0) {
+                        Toast.makeText(
+                            context,
+                            "Data Produk Kosong, Tambahkan data terlebih dahulu",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
-                    for(i in 0 until jsonArray?.length()!!){
+                    for (i in 0 until jsonArray?.length()!!) {
                         val jsonObject = jsonArray?.optJSONObject(i)
 
                         arrayList.add(
-                            ModelOrder(jsonObject.getInt("ID_Transaksi"),
-                            jsonObject.getInt("ID_Pelanggan"),
+                            ModelOrder(
+                                jsonObject.getInt("ID_Transaksi"),
+                                jsonObject.getInt("ID_Pelanggan"),
                                 jsonObject.getString("Nama_Pelanggan"),
                                 jsonObject.getString("Alamat"),
                                 jsonObject.getString("NoHP"),
                                 jsonObject.getInt("ID_Produk"),
                                 jsonObject.getString("Nama_Produk"),
+                                jsonObject.getInt("Jumlah"),
                                 jsonObject.getString("Tgl_Masuk"),
                                 jsonObject.getString("Tgl_Selesai"),
                                 jsonObject.getString("Metode_Pembayaran"),
@@ -98,21 +109,18 @@ class OrderanFragment : Fragment() {
                             )
                         )
 
-                        if(jsonArray?.length() - 1 == i){
-                            loading.dismiss()
+                        if (jsonArray?.length() - 1 == i) {
                             val adapter = OrderAdapter(context!!, arrayList)
                             adapter.notifyDataSetChanged()
-                            rvOrder.adapter  = adapter
+                            rvOrder.adapter = adapter
                         }
                     }
                 }
 
                 override fun onError(anError: ANError?) {
-                    loading.dismiss()
                     Log.e("ONERROR", anError?.errorDetail?.toString()!!)
                     Toast.makeText(context, "Connection Failed", Toast.LENGTH_LONG).show()
                 }
-
             })
 
     }

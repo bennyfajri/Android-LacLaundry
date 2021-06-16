@@ -30,13 +30,13 @@ class ManageProduk : AppCompatActivity() {
         i = intent
         sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
 
-        if(i.hasExtra("editmode")){
-            if(i.getStringExtra("editmode").equals("1")){
+        if (i.hasExtra("editmode")) {
+            if (i.getStringExtra("editmode").equals("1")) {
                 onEditMode()
             }
         }
-        if(i.hasExtra("jenisProduk")){
-            if(i.getStringExtra("jenisProduk").equals("Kiloan")){
+        if (i.hasExtra("jenisProduk")) {
+            if (i.getStringExtra("jenisProduk").equals("Kiloan")) {
                 spinJenisProduk.setSelection(1)
             }
         }
@@ -51,10 +51,10 @@ class ManageProduk : AppCompatActivity() {
             AlertDialog.Builder(this)
                 .setTitle("Konfirmasi")
                 .setMessage("Apakah anda yakin ingin menghapus?")
-                .setPositiveButton("Hapus", DialogInterface.OnClickListener{ dialog, which ->
+                .setPositiveButton("Hapus", DialogInterface.OnClickListener { dialog, which ->
                     deleteProduk()
                 })
-                .setNegativeButton("Batal", DialogInterface.OnClickListener{ dialog, which ->
+                .setNegativeButton("Batal", DialogInterface.OnClickListener { dialog, which ->
                     dialog.dismiss()
                 })
                 .show()
@@ -63,10 +63,10 @@ class ManageProduk : AppCompatActivity() {
 
     private fun onEditMode() {
         etidProduk.visibility = View.VISIBLE
-        etidProduk.setText(i.getIntExtra("idProduk",0).toString())
+        etidProduk.setText(i.getIntExtra("idProduk", 0).toString())
         etidProduk.isEnabled = false
         etNamaProduk.setText(i.getStringExtra("namaProduk"))
-        etHargaProduk.setText(i.getIntExtra("hargaProduk",0).toString())
+        etHargaProduk.setText(i.getIntExtra("hargaProduk", 0).toString())
         txtManageProduk.setText("Ubah Produk")
 
         btnTambahProduk.visibility = View.GONE
@@ -80,18 +80,22 @@ class ManageProduk : AppCompatActivity() {
         loading.show()
 
         AndroidNetworking.post(ApiProduk.CREATE)
-            .addBodyParameter("idUser", sp.getInt("id", 0 ).toString())
+            .addBodyParameter("idUser", sp.getInt("id", 0).toString())
             .addBodyParameter("jenis", spinJenisProduk.selectedItem.toString())
             .addBodyParameter("namaProduk", etNamaProduk.text.toString())
             .addBodyParameter("hargaProduk", etHargaProduk.text.toString())
             .setPriority(Priority.MEDIUM)
             .build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     loading.dismiss()
-                    Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        applicationContext,
+                        response?.getString("message"),
+                        Toast.LENGTH_LONG
+                    ).show()
 
-                    if(response?.getString("message")?.contains("successfully")!!){
+                    if (response?.getString("message")?.contains("successfully")!!) {
                         this@ManageProduk.finish()
                     }
                 }
@@ -99,7 +103,8 @@ class ManageProduk : AppCompatActivity() {
                 override fun onError(anError: ANError?) {
                     loading.dismiss()
                     Log.d("ONERROR", anError?.errorDetail?.toString()!!)
-                    Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_LONG)
+                        .show()
                 }
 
             })
@@ -112,18 +117,22 @@ class ManageProduk : AppCompatActivity() {
 
         AndroidNetworking.post(ApiProduk.UPDATE)
             .addBodyParameter("idProduk", etidProduk.text.toString())
-            .addBodyParameter("idUser", sp.getInt("id", 0 ).toString())
+            .addBodyParameter("idUser", sp.getInt("id", 0).toString())
             .addBodyParameter("jenis", spinJenisProduk.selectedItem.toString())
             .addBodyParameter("namaProduk", etNamaProduk.text.toString())
             .addBodyParameter("hargaProduk", etHargaProduk.text.toString())
             .setPriority(Priority.MEDIUM)
             .build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     loading.dismiss()
-                    Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        applicationContext,
+                        response?.getString("message"),
+                        Toast.LENGTH_LONG
+                    ).show()
 
-                    if(response?.getString("message")?.contains("successfully")!!){
+                    if (response?.getString("message")?.contains("successfully")!!) {
                         this@ManageProduk.finish()
                     }
                 }
@@ -131,7 +140,8 @@ class ManageProduk : AppCompatActivity() {
                 override fun onError(anError: ANError?) {
                     loading.dismiss()
                     Log.d("ONERROR", anError?.errorDetail?.toString()!!)
-                    Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_LONG)
+                        .show()
                 }
 
             })
@@ -142,15 +152,24 @@ class ManageProduk : AppCompatActivity() {
         loading.setMessage("Menghapus data...")
         loading.show()
 
-        AndroidNetworking.get(ApiProduk.DELETE + "?idProduk=" + etidProduk.text.toString() + "&idUser=" + sp.getInt("id",0))
+        AndroidNetworking.get(
+            ApiProduk.DELETE + "?idProduk=" + etidProduk.text.toString() + "&idUser=" + sp.getInt(
+                "id",
+                0
+            )
+        )
             .setPriority(Priority.MEDIUM)
             .build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     loading.dismiss()
-                    Toast.makeText(applicationContext, response?.getString("message"), Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        applicationContext,
+                        response?.getString("message"),
+                        Toast.LENGTH_LONG
+                    ).show()
 
-                    if(response?.getString("message")?.contains("successfully")!!){
+                    if (response?.getString("message")?.contains("successfully")!!) {
                         this@ManageProduk.finish()
                     }
                 }
@@ -158,7 +177,8 @@ class ManageProduk : AppCompatActivity() {
                 override fun onError(anError: ANError?) {
                     loading.dismiss()
                     Log.d("ONERROR", anError?.errorDetail.toString()!!)
-                    Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_LONG).show()
+                    Toast.makeText(applicationContext, "Connection Failure", Toast.LENGTH_LONG)
+                        .show()
                 }
 
             })

@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -21,6 +22,7 @@ import kotlinx.android.synthetic.main.activity_konfirmasi_pesanan.*
 import kotlinx.android.synthetic.main.activity_manage_order.*
 import kotlinx.android.synthetic.main.activity_manage_order.txtJumlahBayar
 import kotlinx.android.synthetic.main.activity_manage_produk.*
+import kotlinx.android.synthetic.main.fragment_orderan.*
 import kotlinx.android.synthetic.main.product_list.*
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -40,10 +42,13 @@ class ManageOrder : AppCompatActivity() {
     lateinit var tglMasuk: String
     lateinit var tglSelesai: String
     lateinit var metodeBayar: String
+    var jumlah = 0
     var jumlahBayar = 0
     var totalBayar = 0
     lateinit var catatan: String
     lateinit var statusBayar: String
+    lateinit var namaLaundry: String
+    lateinit var alamatLaundry: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +57,7 @@ class ManageOrder : AppCompatActivity() {
 
         getIntentValue()
         setViewValue()
+        makeQrCode()
 
 
         btnEditOrder.setOnClickListener {
@@ -62,6 +68,12 @@ class ManageOrder : AppCompatActivity() {
         btnKirimNota.setOnClickListener {
             kirimNota()
         }
+    }
+
+    private fun makeQrCode() {
+        val text = "$namaLaundry\n $alamatLaundry\n==============\n" +
+                "Nama: $namaPelanggan\nAamat : $alamatPelanggan\nNo HP : $nohp\nTanggal : $tglMasuk\n==============\n" +
+                "Pesanan : $namaProduk\n"
     }
 
     private fun getIntentValue() {
@@ -90,12 +102,14 @@ class ManageOrder : AppCompatActivity() {
         format1 = SimpleDateFormat("dd-MMM-yyyy")
         tglSelesai = format1.format(date2)
 
-
         metodeBayar = i.getStringExtra("metodeBayar").toString()
+        jumlah = i.getIntExtra("jumlah",0)
         jumlahBayar = i.getIntExtra("jumlahBayar",0)
         totalBayar = i.getIntExtra("totalBayar",0)
         catatan = i.getStringExtra("catatan").toString()
         statusBayar = i.getStringExtra("statusBayar").toString()
+        namaLaundry = sp.getString("namaLaundry", "").toString()
+        alamatLaundry = sp.getString("alamatLaundry", "").toString()
     }
 
     private fun setViewValue() {
@@ -103,6 +117,7 @@ class ManageOrder : AppCompatActivity() {
         txtOrderNOHP.setText(nohp)
         txtOrderAlamat.setText(alamatPelanggan)
         txtOrderNamaPr.setText(namaProduk)
+        txtOrderJumlah.setText(jumlah.toString())
         txtOrderJumlahBayar.setText("Rp. ${jumlahBayar.toString()}")
         txtOrderTglMasuk.setText(tglMasuk)
         txtOrderTglSelesai.setText(tglSelesai)
