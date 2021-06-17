@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         btnLogin.setOnClickListener(this)
         textviewRegister.setOnClickListener(this)
+        textviewLupa.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -48,22 +49,18 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
             }
             R.id.textviewLupa -> {
-                val contact = "+6282283399646"
-
-                val url = "https://api.whatsapp.com/send?phone=$contact"
+                val pm: PackageManager = packageManager
                 try {
-                    val pm: PackageManager = applicationContext.getPackageManager()
-                    pm.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
-                    val i = Intent(Intent.ACTION_VIEW)
-                    i.data = Uri.parse(url)
-                    startActivity(i)
-                } catch (e: PackageManager.NameNotFoundException) {
-                    Toast.makeText(
-                        applicationContext,
-                        "Whatsapp app not installed in your phone",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    e.printStackTrace()
+                    var toNumber = "082283399646"
+                    val text = "Halo Admin LacLaundry"
+                    val changeToIndon = toNumber.take(2).replace("08", "+628")
+                    val realNumber = changeToIndon+toNumber.takeLast(toNumber.length-2)
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data =
+                        Uri.parse("https://wa.me/$realNumber?text=$text")
+                    startActivity(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(applicationContext, "$e", Toast.LENGTH_LONG).show();
                 }
             }
             R.id.btnLogin -> {
@@ -116,7 +113,13 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun remember_user(username: String, password: String,namaLaundry: String,alamatLaundry: String, idLaundry: Int){
+    private fun remember_user(
+        username: String,
+        password: String,
+        namaLaundry: String,
+        alamatLaundry: String,
+        idLaundry: Int
+    ){
         sp = getSharedPreferences("user_info", Context.MODE_PRIVATE)
 
         val editor = sp.edit()

@@ -6,39 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.pelanggan.ListPelanggan"
-    android:background="@drawable/backgroundlistproduk">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gambarPanah"
-        android:src="@drawable/panah"
-        android:layout_marginLeft="5dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/listPelanggan"
-        android:text="List Pelanggan"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="70dp"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"/>
-    <SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        />
-
+    android:background="@color/grey">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPelanggan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/product_list"
-        android:layout_marginTop="110dp"/>
+        tools:listitem="@layout/product_list" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabTambahPelanggan"

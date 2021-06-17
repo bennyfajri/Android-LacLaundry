@@ -1,6 +1,13 @@
  package com.benny.laclaundry.home.produk
 
+import android.app.ActionBar
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
+import android.widget.RelativeLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -10,12 +17,15 @@ import com.benny.laclaundry.R
 import kotlinx.android.synthetic.main.activity_list_produk.*
 
 
-class ListProduk : AppCompatActivity() {
+ class ListProduk : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_produk)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.themedContext
+
         setupViewPager(vpProduk)
 
         tabProduk.setupWithViewPager(vpProduk)
@@ -49,5 +59,15 @@ class ListProduk : AppCompatActivity() {
             return mFragmentTitleList.get(position)
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

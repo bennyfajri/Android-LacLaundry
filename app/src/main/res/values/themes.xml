@@ -23,5 +23,10 @@
 
     <style name="Widget.MyApp.ActionBar" parent="@android:style/Widget.ActionBar">
         <item name="android:background">@color/purple_500</item>
+        <item name="titleTextStyle">@style/MyActionBarTitle</item>
+    </style>
+
+    <style name="MyActionBarTitle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>
