@@ -31,12 +31,20 @@
             android:visibility="gone"/>
 
 
-
-        <EditText
-            android:id="@+id/etNamaProduk"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama Produk"/>
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:id="@+id/etNamaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="Nama Produk"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Spinner
             android:id="@+id/spinJenisProduk"
@@ -46,11 +54,21 @@
             android:entries="@array/jenisProduk"
             android:paddingBottom="12dp"/>
 
-        <EditText
-            android:id="@+id/etHargaProduk"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Harga"/>
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:id="@+id/etHargaProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="Harga"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/btnTambahProduk"

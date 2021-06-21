@@ -39,38 +39,82 @@
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintVertical_bias="0.444">
 
-        <ImageButton
-            android:id="@+id/btnProduk"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:elevation="4dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/produk" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageButton
-            android:id="@+id/btnLaporan"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:elevation="4dp"
-            android:scaleType="centerInside"
-            app:srcCompat="@drawable/laporan" />
+            <ImageButton
+                android:id="@+id/btnProduk"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:elevation="4dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/produk" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="38dp"
+                android:text="Produk"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnLaporan"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:elevation="4dp"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/laporan" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="35dp"
+                android:text="Laporan"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.00000001">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageButton
             android:id="@+id/btnPelanggan"
@@ -79,6 +123,15 @@
             android:elevation="4dp"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/pelanggan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="22dp"
+            android:text="Pelanggan"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
 
     </LinearLayout>

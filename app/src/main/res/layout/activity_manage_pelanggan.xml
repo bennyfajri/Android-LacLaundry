@@ -29,25 +29,50 @@
             android:layout_height="wrap_content"
             android:hint="ID Pelanggan"
             android:visibility="gone"/>
-
-        <EditText
-            android:id="@+id/etNamaPelanggan"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nama Pelanggan"/>
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:id="@+id/etNamaPelanggan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="Nama Pelanggan"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etNohp"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="No HP"/>
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:id="@+id/etNohp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="No HP"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/etAlamat"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Alamat"/>
-
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center_horizontal">
+            <EditText
+                android:id="@+id/etAlamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:hint="Alamat"
+                android:inputType="textCapSentences" />
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/btnTambahPelanggan"
             android:layout_width="match_parent"
