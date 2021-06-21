@@ -124,8 +124,8 @@ class ManageOrder : AppCompatActivity() {
         namaLaundry = sp.getString("namaLaundry", "").toString()
         alamatLaundry = sp.getString("alamatLaundry", "").toString()
 
-        nota = "$namaLaundry\n $alamatLaundry\n\n===============\n" +
-                "Nama: $namaPelanggan\nAlamat : $alamatPelanggan\nNo HP : $nohp\nTanggal : $tglMasuk\nEstimasi: $tglSelesai\n\n==============\n" +
+        nota = "*$namaLaundry*\n $alamatLaundry\n\n===============\n" +
+                "Pelanggan yth, \nNama: $namaPelanggan\nAlamat : $alamatPelanggan\nNo HP : $nohp\nTanggal : $tglMasuk\nEstimasi: $tglSelesai\n\n==============\n" +
                 "Pesanan : $namaProduk\nHarga: $hargaProduk\nBerat(Kg) / Jumlah(Pcs) : $jumlah\nTotal: $jumlahBayar\nTotal Bayar: $totalDibayar\nStatus: $statusBayar"
     }
 
@@ -151,27 +151,25 @@ class ManageOrder : AppCompatActivity() {
     }
 
     private fun kirimNota() {
-        val intent = Intent(Intent.ACTION_SEND)
-//        intent.setType("text/plain")
-       val bitmap = imgQr.drawable.toBitmap()
-        val bytes = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path = MediaStore.Images.Media.insertImage(
-            applicationContext.contentResolver, bitmap,
-            "tempimage",
-            null
-        )
-        val uri = Uri.parse(path)
+//        val intent = Intent(Intent.ACTION_VIEW)
+//       val bitmap = imgQr.drawable.toBitmap()
+//        val bytes = ByteArrayOutputStream()
+//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+//        val path = MediaStore.Images.Media.insertImage(contentResolver, bitmap, "tempimage1", null)
+//        val uri = Uri.parse(path)
+
+//        intent.putExtra(Intent.EXTRA_STREAM, uri)
+//        intent.setPackage("com.whatsapp")
+//        intent.putExtra(Intent.EXTRA_TEXT, nota)
+//        intent.putExtra(Intent.EXTRA_STREAM, url)
+//
+//        intent.setType("image/jpeg")
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setType("text/plain")
         val changeTo = nohp.take(2).replace("08","+628")
         val realnumber = changeTo + nohp.takeLast(nohp.length-2)
         intent.data =
             Uri.parse("https://wa.me/$realnumber?text=$nota")
-        intent.putExtra(Intent.EXTRA_STREAM, uri)
-        intent.setPackage("com.whatsapp")
-        intent.putExtra(Intent.EXTRA_TEXT, nota)
-        intent.putExtra(Intent.EXTRA_STREAM, uri)
-//
-        intent.setType("image/jpeg")
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
 

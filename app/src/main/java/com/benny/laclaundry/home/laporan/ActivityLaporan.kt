@@ -2,6 +2,7 @@ package com.benny.laclaundry.home.laporan
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.benny.laclaundry.R
 import com.benny.laclaundry.URL
 import com.github.javiersantos.materialstyleddialogs.MaterialStyledDialog
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_laporan.*
 import org.json.JSONObject
 import java.text.NumberFormat
@@ -59,25 +61,29 @@ class ActivityLaporan : AppCompatActivity() {
                     .build()
                     .getAsJSONObject(object : JSONObjectRequestListener {
                         override fun onResponse(response: JSONObject?) {
-                            arrayList.clear()
-                            val jsonArray = response?.optJSONArray("result")
+                            try{
+                                arrayList.clear()
+                                val jsonArray = response?.optJSONArray("result")
 
-                            if (jsonArray?.length() == 0) {
-                                Toast.makeText(
-                                    applicationContext, "Data Kosong",
-                                    Toast.LENGTH_LONG
-                                ).show()
-                            }
-
-                            for (i in 0 until jsonArray?.length()!!) {
-                                val jsonObject = jsonArray?.optJSONObject(i)
-
-                                arrayList.add(ModelLaporan(jsonObject.getInt("Total")))
-
-                                if (jsonArray?.length() - 1 == i) {
-//                            Toast.makeText(applicationContext, "$total", Toast.LENGTH_LONG).show()
+                                if (jsonArray?.length() == 0) {
+                                    Toast.makeText(
+                                        applicationContext, "Data Kosong",
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                 }
+                                for (i in 0 until jsonArray?.length()!!) {
+                                    val jsonObject = jsonArray?.optJSONObject(i)
+
+                                    arrayList.add(ModelLaporan(jsonObject.getInt("Total")))
+
+                                    if (jsonArray?.length() - 1 == i) {
+//                            Toast.makeText(applicationContext, "$total", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            }catch (ex : Exception){
+                                Snackbar.make(view, "Belum ada transaksi", Snackbar.LENGTH_LONG).show()
                             }
+
 
 
                         }
