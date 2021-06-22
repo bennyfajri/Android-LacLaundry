@@ -23,6 +23,7 @@ import com.benny.laclaundry.home.pelanggan.ModelPelanggan
 import com.benny.laclaundry.home.produk.ApiProduk
 import com.benny.laclaundry.home.produk.ManageProduk
 import com.benny.laclaundry.home.produk.ModelProduk
+import com.google.android.material.textfield.TextInputEditText
 import com.jacksonandroidnetworking.JacksonParserFactory
 import kotlinx.android.synthetic.main.activity_manage_produk.*
 import kotlinx.android.synthetic.main.fragment_transaksi.*
@@ -35,8 +36,7 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
     var arrayProduk = ArrayList<ModelProduk>()
     lateinit var spinPelanggan: Spinner
     lateinit var spinProduk: Spinner
-    lateinit var sp: SharedPreferences
-    lateinit var etHarga : EditText
+    lateinit var etHarga : TextInputEditText
 
 
     override fun onCreateView(
@@ -68,21 +68,37 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
     }
 
     private fun transaksiBaru() {
-        var pelanggan = spinPelanggan.selectedItem.toString()
-        var produk = spinProduk.selectedItem.toString()
-        var arrSplitPelanggan: List<String> = pelanggan.split("; ")
-        var arrSplitProduk: List<String> = produk.split("; ")
-        var hargaDibayar = etHarga.text.toString().toInt() * etJumlahTransaksi.text.toString().toInt()
-        val jumlah = etJumlahTransaksi.text.toString()
-        val intent = Intent(context, KonfirmasiPesanan::class.java)
-        intent.putExtra("hargaDibayar", hargaDibayar)
-        intent.putExtra("idPelanggan", arrSplitPelanggan[2])
-        intent.putExtra("namaPelanggan", arrSplitPelanggan[0])
-        intent.putExtra("idProduk", arrSplitProduk[2])
-        intent.putExtra("namaProduk", arrSplitProduk[0])
-        intent.putExtra("jumlah", jumlah)
-        startActivity(intent)
+        if(validation()){
+            var pelanggan = spinPelanggan.selectedItem.toString()
+            var produk = spinProduk.selectedItem.toString()
+            var arrSplitPelanggan: List<String> = pelanggan.split("; ")
+            var arrSplitProduk: List<String> = produk.split("; ")
+            var hargaDibayar = etHarga.text.toString().toInt() * etJumlahTransaksi.text.toString().toInt()
+            val jumlah = etJumlahTransaksi.text.toString()
+            val intent = Intent(context, KonfirmasiPesanan::class.java)
+            intent.putExtra("hargaDibayar", hargaDibayar)
+            intent.putExtra("idPelanggan", arrSplitPelanggan[2])
+            intent.putExtra("namaPelanggan", arrSplitPelanggan[0])
+            intent.putExtra("idProduk", arrSplitProduk[2])
+            intent.putExtra("namaProduk", arrSplitProduk[0])
+            intent.putExtra("jumlah", jumlah)
+            startActivity(intent)
+            etJumlahTransaksi.setText("")
 //        Toast.makeText(context, "jumlah : $jumlah", Toast.LENGTH_LONG ).show()
+        }
+    }
+
+    private fun validation(): Boolean {
+        var value = true
+
+        val jumlah = etJumlahTransaksi.text.toString().trim()
+
+        if(jumlah.isEmpty()){
+            etJumlahTransaksi.error = "Jumlah kosong"
+            etJumlahTransaksi.requestFocus()
+            value = false
+        }
+        return value
     }
 
     override fun onResume() {
@@ -246,5 +262,7 @@ class TransaksiFragment : Fragment(R.layout.fragment_transaksi) {
     private fun setHarga(produk: ModelProduk) {
        etHarga.setText(produk.hargaProduk.toString())
     }
+
+
 
 }

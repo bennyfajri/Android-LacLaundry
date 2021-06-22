@@ -72,8 +72,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textColor="@color/purple_700"
-                tools:text="Status Bayar" />
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:textColor="@color/white"
+                tools:text="Status Bayar"
+                android:background="@drawable/shape_green"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

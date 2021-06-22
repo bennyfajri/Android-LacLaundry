@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.common.Priority
@@ -55,7 +56,7 @@ class OrderAdapter(private val context: Context?, private val arrayList: ArrayLi
         holder.txtOrderTotalBayar.text = order.totalDibayar.toString()
         holder.txtOrderStatusBayar.text = order.statusBayar
         if (order.statusBayar.contains("Belum Lunas")) {
-            holder.txtOrderStatusBayar.setTextColor(Color.RED)
+            holder.txtOrderStatusBayar.background = context?.let { ContextCompat.getDrawable(it, R.drawable.shape_red) }
         }
         holder.cvOrder.setOnClickListener {
             val intent = Intent(context, ManageOrder::class.java)

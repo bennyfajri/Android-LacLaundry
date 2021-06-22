@@ -63,7 +63,7 @@ class ManageOrder : AppCompatActivity() {
 
         getIntentValue()
         setViewValue()
-        makeQrCode()
+//        makeQrCode()
 
         btnEditOrder.setOnClickListener {
             editOrder()
@@ -75,19 +75,19 @@ class ManageOrder : AppCompatActivity() {
         }
     }
 
-    private fun makeQrCode() {
-        val writer = QRCodeWriter()
-        val bitMatrix = writer.encode(nota, BarcodeFormat.QR_CODE, 350, 350)
-        val width = bitMatrix.width
-        val height= bitMatrix.height
-        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
-        for(x in 0 until width){
-            for(y in 0 until height){
-                bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
-            }
-        }
-        imgQr.setImageBitmap(bitmap)
-    }
+//    private fun makeQrCode() {
+//        val writer = QRCodeWriter()
+//        val bitMatrix = writer.encode(nota, BarcodeFormat.QR_CODE, 350, 350)
+//        val width = bitMatrix.width
+//        val height= bitMatrix.height
+//        val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+//        for(x in 0 until width){
+//            for(y in 0 until height){
+//                bitmap.setPixel(x, y, if (bitMatrix.get(x, y)) Color.BLACK else Color.WHITE)
+//            }
+//        }
+//        imgQr.setImageBitmap(bitmap)
+//    }
 
     private fun getIntentValue() {
         var format = SimpleDateFormat("dd-mm-yyyy hh:mm:ss")

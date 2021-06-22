@@ -34,7 +34,10 @@
             android:id="@+id/spinPelanggan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:background="@drawable/outline"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"/>
 
         <TextView
             android:id="@+id/txtTambahPelanggan"
@@ -54,7 +57,10 @@
             android:id="@+id/spinProduk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"/>
+            android:padding="16dp"
+            android:background="@drawable/outline"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"/>
 
         <TextView
             android:id="@+id/txtTambahProduk"
@@ -70,12 +76,24 @@
             android:textColor="@color/black"
             android:layout_marginTop="16dp"/>
 
-        <EditText
-            android:id="@+id/etHargaTrans"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Harga produk"
-            android:enabled="false"/>
+            android:enabled="false"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:prefixText="Rp. ">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etHargaTrans"
+                android:layout_width="match_parent"
+                android:text="69000"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,11 +102,22 @@
             android:textColor="@color/black"
             android:layout_marginTop="16dp"/>
 
-        <EditText
-            android:id="@+id/etJumlahTransaksi"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="1 kg/ 1 Pcs/ ..."/>
+            android:hint="1 kg/ 1 pcs/ ..."
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxCornerRadiusTopEnd="8dp"
+            app:boxCornerRadiusTopStart="8dp"
+            app:boxCornerRadiusBottomStart="8dp"
+            app:boxCornerRadiusBottomEnd="8dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etJumlahTransaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btnTambahTrans"

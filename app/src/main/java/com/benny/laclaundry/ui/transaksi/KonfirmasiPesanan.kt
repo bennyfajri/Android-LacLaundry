@@ -19,6 +19,7 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.benny.laclaundry.R
 import com.benny.laclaundry.URL
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_konfirmasi_pesanan.*
 import kotlinx.android.synthetic.main.fragment_transaksi.*
 import kotlinx.android.synthetic.main.pelanggan_list.*
@@ -94,28 +95,27 @@ class KonfirmasiPesanan : AppCompatActivity() {
             this@KonfirmasiPesanan,
             DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                 tanggalSelesai = "$year-${month + 1}-$dayOfMonth"
-                Toast.makeText(applicationContext, "$tanggalSelesai", Toast.LENGTH_SHORT).show()
+                etEstimasi.setText(tanggalSelesai.toString())
             },
             year,
             month,
             day
         )
         dateSetListener.show()
-
-
     }
 
     private fun tambahTransaksi() {
-        val idUser = sp.getInt("id", 0).toString()
-        var statusBayar = ""
-        var totalDibayar = etJumlahBayar.text.toString().toInt()
-        if (totalDibayar >= jumlahHarga) {
-            statusBayar = "Lunas"
-        } else {
-            statusBayar = "Belum Lunas"
-        }
-        val catatan = etCatatan.text.toString()
-        val metodeBayar = spinJenisPembayaran.selectedItem.toString()
+        if (validation()) {
+            val idUser = sp.getInt("id", 0).toString()
+            var statusBayar = ""
+            var totalDibayar = etJumlahBayar.text.toString().toInt()
+            if (totalDibayar >= jumlahHarga) {
+                statusBayar = "Lunas"
+            } else {
+                statusBayar = "Belum Lunas"
+            }
+            val catatan = etCatatan.text.toString()
+            val metodeBayar = spinJenisPembayaran.selectedItem.toString()
 //        val alamatLaundry = sp.getString("alamatLaundry", "").toString()
 //        val namaLaundry = sp.getString("namaLaundry", "").toString()
 //
@@ -123,41 +123,61 @@ class KonfirmasiPesanan : AppCompatActivity() {
 
 //        val pesan = "$idUser , $idProduk, $idPelanggan, $tanggalSelesai, \n$statusBayar, $jumlahBayar, ${etCatatan.text.toString()},\n ${spinJenisPembayaran.selectedItem.toString()}"
 //        Toast.makeText(applicationContext, pesan, Toast.LENGTH_LONG).show()
-        val url = URL.server + "add_transaksi.php"
-        val loading = ProgressDialog(this)
-        loading.setMessage("Menyimpan data..")
-        loading.show()
+            val url = URL.server + "add_transaksi.php"
+            val loading = ProgressDialog(this)
+            loading.setMessage("Menyimpan data..")
+            loading.show()
 
-        AndroidNetworking.post(url)
-            .addBodyParameter("idUser", idUser)
-            .addBodyParameter("idProduk", idProduk)
-            .addBodyParameter("idPelanggan", idPelanggan)
-            .addBodyParameter("tglSelesai", tanggalSelesai)
-            .addBodyParameter("statusBayar", statusBayar)
-            .addBodyParameter("jumlahHarga", jumlahHarga.toString())
-            .addBodyParameter("totalDibayar", totalDibayar.toString())
-            .addBodyParameter("catatan", catatan)
-            .addBodyParameter("metodeBayar", metodeBayar)
-            .addBodyParameter("jumlah", jumlah)
-            .setPriority(Priority.MEDIUM)
-            .build()
-            .getAsJSONObject(object : JSONObjectRequestListener {
-                override fun onResponse(response: JSONObject?) {
-                    loading.dismiss()
-                    Toast.makeText(
-                        applicationContext,
-                        response?.getString("message"),
-                        Toast.LENGTH_LONG
-                    ).show()
+            AndroidNetworking.post(url)
+                .addBodyParameter("idUser", idUser)
+                .addBodyParameter("idProduk", idProduk)
+                .addBodyParameter("idPelanggan", idPelanggan)
+                .addBodyParameter("tglSelesai", tanggalSelesai)
+                .addBodyParameter("statusBayar", statusBayar)
+                .addBodyParameter("jumlahHarga", jumlahHarga.toString())
+                .addBodyParameter("totalDibayar", totalDibayar.toString())
+                .addBodyParameter("catatan", catatan)
+                .addBodyParameter("metodeBayar", metodeBayar)
+                .addBodyParameter("jumlah", jumlah)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(object : JSONObjectRequestListener {
+                    override fun onResponse(response: JSONObject?) {
+                        loading.dismiss()
+                        Toast.makeText(
+                            applicationContext,
+                            response?.getString("message"),
+                            Toast.LENGTH_LONG
+                        ).show()
 
-                    if (response?.getString("message")?.contains("successfully")!!) {
-                        this@KonfirmasiPesanan.finish()
+                        if (response?.getString("message")?.contains("successfully")!!) {
+                            this@KonfirmasiPesanan.finish()
+                        }
                     }
-                }
 
-                override fun onError(anError: ANError?) {
-                }
+                    override fun onError(anError: ANError?) {
+                    }
 
-            })
+                })
+        }
+
+    }
+
+    private fun validation(): Boolean {
+        var value = true
+
+        val estimasi = etEstimasi.text.toString().trim()
+        val catatan = etCatatan.text.toString().trim()
+
+        if (estimasi.isEmpty()) {
+            etEstimasi.error = "estimasi kosong"
+            value = false
+        }
+        if (catatan.isEmpty()) {
+            etCatatan.error = "catatan kosong"
+            etCatatan.requestFocus()
+            value = false
+        }
+        return value
     }
 }
