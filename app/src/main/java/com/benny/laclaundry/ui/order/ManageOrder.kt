@@ -126,7 +126,7 @@ class ManageOrder : AppCompatActivity() {
 
         nota = "*$namaLaundry*\n $alamatLaundry\n\n===============\n" +
                 "Pelanggan yth, \nNama: $namaPelanggan\nAlamat : $alamatPelanggan\nNo HP : $nohp\nTanggal : $tglMasuk\nEstimasi: $tglSelesai\n\n==============\n" +
-                "Pesanan : $namaProduk\nHarga: $hargaProduk\nBerat(Kg) / Jumlah(Pcs) : $jumlah\nTotal: $jumlahBayar\nTotal Bayar: $totalDibayar\nStatus: $statusBayar"
+                "Pesanan : $namaProduk\nKeterangan :  $catatan\nHarga: $hargaProduk\nBerat(Kg) / Jumlah(Pcs) : $jumlah\nTotal: $jumlahBayar\nTotal Bayar: $totalDibayar\nStatus: $statusBayar"
     }
 
     private fun setViewValue() {
