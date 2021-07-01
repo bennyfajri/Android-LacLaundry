@@ -12,7 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LacLaundry"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashScreen"></activity>
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.order.ManageOrder" />
         <activity
             android:name=".ui.transaksi.KonfirmasiPesanan"
@@ -29,11 +35,6 @@
         <activity
             android:name=".data.remote.LoginActivity"
             android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
         <activity

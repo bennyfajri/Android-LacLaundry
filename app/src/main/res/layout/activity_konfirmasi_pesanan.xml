@@ -73,9 +73,10 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnEstimasi"
                         android:layout_width="100dp"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
                         android:layout_alignParentBottom="true"
                         android:text="Pilih"
+                        android:layout_marginRight="8dp"
                         app:strokeColor="@android:color/black" />
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +93,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etEstimasi"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent" />
+                            android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
