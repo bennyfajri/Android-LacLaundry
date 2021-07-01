@@ -24,10 +24,14 @@ class RegisterActivity: AppCompatActivity(), View.OnClickListener {
         supportActionBar?.hide()
 
         btnRegister.setOnClickListener(this)
+        textviewKembalikeLogin.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
+            R.id.textviewKembalikeLogin -> {
+                finish()
+            }
             R.id.btnRegister ->{
                 if(validation()){
                     val json = JSONObject()
