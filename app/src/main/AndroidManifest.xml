@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.order.ManageOrder" />
+        <activity android:name=".ui.order.ManageOrder"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.transaksi.KonfirmasiPesanan"
             android:windowSoftInputMode="adjustResize" />
