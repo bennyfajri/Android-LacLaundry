@@ -6,130 +6,134 @@
     android:layout_height="match_parent"
     tools:context=".ui.transaksi.TransaksiFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:padding="20dp">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Transaksi"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilih customer"
-            android:textColor="@color/black"
-            android:layout_marginTop="20dp"/>
-
-        <Spinner
-            android:id="@+id/spinPelanggan"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/outline"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            android:orientation="vertical"
 
-        <TextView
-            android:id="@+id/txtTambahPelanggan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pelanggan baru? Tap disini"
-            android:textSize="10sp"/>
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pilih Produk"
-            android:textColor="@color/black"
-            android:layout_marginTop="16dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transaksi"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
-        <Spinner
-            android:id="@+id/spinProduk"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:background="@drawable/outline"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih customer"
+                android:textColor="@color/black"
+                android:layout_marginTop="20dp"/>
 
-        <TextView
-            android:id="@+id/txtTambahProduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Produk tidak ada? Tambah baru"
-            android:textSize="10sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Harga"
-            android:textColor="@color/black"
-            android:layout_marginTop="16dp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:enabled="false"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusBottomEnd="8dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:prefixText="Rp. ">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etHargaTrans"
-                android:layout_width="match_parent"
-                android:text="69000"
-                android:layout_height="wrap_content" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jumlah/berat"
-            android:textColor="@color/black"
-            android:layout_marginTop="16dp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="1 kg/ 1 pcs/ ..."
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:boxCornerRadiusTopEnd="8dp"
-            app:boxCornerRadiusTopStart="8dp"
-            app:boxCornerRadiusBottomStart="8dp"
-            app:boxCornerRadiusBottomEnd="8dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etJumlahTransaksi"
+            <Spinner
+                android:id="@+id/spinPelanggan"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:padding="16dp"
+                android:background="@drawable/outline"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/txtTambahPelanggan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pelanggan baru? Tap disini"
+                android:textSize="10sp"/>
 
-        <Button
-            android:id="@+id/btnTambahTrans"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lanjut"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pilih Produk"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <Spinner
+                android:id="@+id/spinProduk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/outline"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/txtTambahProduk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Produk tidak ada? Tambah baru"
+                android:textSize="10sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:prefixText="Rp. ">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etHargaTrans"
+                    android:layout_width="match_parent"
+                    android:text="69000"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jumlah/berat"
+                android:textColor="@color/black"
+                android:layout_marginTop="16dp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="1 kg/ 1 pcs/ ..."
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopEnd="8dp"
+                app:boxCornerRadiusTopStart="8dp"
+                app:boxCornerRadiusBottomStart="8dp"
+                app:boxCornerRadiusBottomEnd="8dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etJumlahTransaksi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btnTambahTrans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Lanjut"/>
+        </LinearLayout>
+
+    </ScrollView>
 
 
-
-
-        
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
